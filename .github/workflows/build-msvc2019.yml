@@ -34,12 +34,12 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         type: "zip"
-        directory: "hwinfo/build/${{ cmakeInstallationPath }}"
+        directory: "hwinfo/build/${{ env.cmakeInstallationPath }}"
         filename: "${{ env.msvc2019TargetZip }}"
 
     - name: Release prebuilt
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "hwinfo/build/${{ cmakeInstallationPath }}/${{ env.msvc2019TargetZip }}"
+        artifacts: "hwinfo/build/${{ env.cmakeInstallationPath }}/${{ env.msvc2019TargetZip }}"
         allowUpdates: true
         token: ${{ secrets.GITHUB_TOKEN }}
