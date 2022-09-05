@@ -29,6 +29,10 @@ jobs:
           set PATH=${{ github.workspace }}\cmake-3.24.0-windows-x86_64\bin;
           cd hwinfo && cmake.exe -G"Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX="build/${{ env.cmakeInstallationPath }}" -B./build &&^
           cd build && cmake --build . --config Release --target ALL_BUILD -v -- /maxcpucount && cmake --install . 
+    
+    - name: cd
+      shell: cmd
+      run: cd hwinfo && cd build && dir
       
     - name: Archive Release
       uses: thedoctor0/zip-release@master
