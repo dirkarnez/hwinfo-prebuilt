@@ -12,7 +12,6 @@ jobs:
     runs-on: windows-2019
     env:
       libraryName: hwinfo
-      cmakeInstallationPath: hwinfo-installation
       msvc2019TargetZip: hwinfo-${{ github.ref_name }}-msvc2019.zip
     steps:
     - name: git clone
@@ -27,7 +26,7 @@ jobs:
       shell: cmd
       run: |
           set PATH=${{ github.workspace }}\cmake-3.24.0-windows-x86_64\bin;
-          cd hwinfo && cmake.exe -G"Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX="build/${{ env.cmakeInstallationPath }}" -B./build &&^
+          cd hwinfo && cmake.exe -G"Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -B./build &&^
           cd build && cmake --build . --config Release --target ALL_BUILD -v -- /maxcpucount && cmake --install . 
           
     - name: export
