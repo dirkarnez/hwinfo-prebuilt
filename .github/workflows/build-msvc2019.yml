@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Create Release
-    runs-on: windows-latest
+    runs-on: windows-2019
     env:
       libraryName: hwinfo
       cmakeInstallationPath: hwinfo-installation
