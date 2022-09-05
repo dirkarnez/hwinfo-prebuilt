@@ -30,17 +30,12 @@ jobs:
           cd hwinfo && cmake.exe -G"Visual Studio 16 2019" -A x64 -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX="build/${{ env.cmakeInstallationPath }}" -B./build &&^
           cd build && cmake --build . --config Release --target ALL_BUILD -v -- /maxcpucount && cmake --install . 
           
-    - name: export include
-      shell: cmd
-      run: cd /d "${{github.workspace}}" && mkdir "export\include" && xcopy /E /H /Y /C "\*" "export\network-uri"
-      
-    - name: export lib
+    - name: export
       shell: cmd
       run: |
         cd /d "${{github.workspace}}" &&^
         mkdir "export\lib" && xcopy /E /H /Y /C "hwinfo\build\lib\Release\*" "export\lib" &&^
         mkdir "export\include" && xcopy /E /H /Y /C "hwinfo\include\*" "export\include"
-
   
     - name: Archive Release
       uses: thedoctor0/zip-release@master
